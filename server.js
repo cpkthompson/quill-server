@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 const {convertHtmlToDelta, convertDeltaToHtml} = require('node-quill-converter');
 
 var app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(3000, () => {
