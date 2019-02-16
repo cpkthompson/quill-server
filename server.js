@@ -33,15 +33,8 @@ app.post('/delta', function (req, res) {
     var caseHtmlString = req.body.case;
     res.json(convertHtmlToDelta(caseHtmlString))
 });
-app.post('/dt', function (req, res) {
+app.post('/html', function (req, res) {
     req.setTimeout(300000);
-    var oldDelta = req.body.oldDelta;
-    var deltaChanges = req.body.deltaChanges;
-    let delta = new Delta(oldDelta);
-
-    for (let deltaChange of deltaChanges) {
-        delta = delta.compose(deltaChange)
-    }
-
-    res.json({'delta': delta, 'text': convertDeltaToHtml(delta)})
+    var delta = req.body.delta;
+    res.json(convertDeltaToHtml(delta))
 });
