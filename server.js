@@ -25,6 +25,7 @@ app.post('/delta', function (req, res) {
     res.json(convertHtmlToDelta(caseHtmlString))
 });
 app.post('/dt', function (req, res) {
+    req.setTimeout(300000);
     var oldDelta = req.body.oldDelta;
     var deltaChanges = req.body.deltaChanges;
     let delta = new Delta(oldDelta);
