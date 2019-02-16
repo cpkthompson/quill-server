@@ -4,8 +4,14 @@ var Delta = require('quill-delta');
 
 
 const {convertHtmlToDelta, convertDeltaToHtml} = require('node-quill-converter');
+const Sentry = require('@sentry/node');
 
 var app = express();
+
+Sentry.init({dsn: 'https://7204ae43c545464d9507b749800126aa@sentry.io/1395724'});
+
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.errorHandler());
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 
