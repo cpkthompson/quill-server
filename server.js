@@ -19,6 +19,9 @@ app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port 3000");
 });
 
+app.get('/', function (req, res) {
+    res.redirect('https://api.judy.legal/dashboard/');
+});
 
 app.post('/delta', function (req, res) {
     var caseHtmlString = req.body.case;
