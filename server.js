@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require('body-parser');
+var Delta = require('quill-delta');
 
 
 const {convertHtmlToDelta, convertDeltaToHtml} = require('node-quill-converter');
@@ -23,7 +24,14 @@ app.post('/delta', function (req, res) {
     var caseHtmlString = req.body.case;
     res.json(convertHtmlToDelta(caseHtmlString))
 });
-app.post('/html', function (req, res) {
-    var caseDelta = req.body.delta;
-    res.json(convertDeltaToHtml(caseDelta))
+app.post('/dt', function (req, res) {
+    var oldDelta = req.body.oldDelta;
+    var deltaChanges = req.body.deltaChanges;
+    let delta = new Delta(oldDelta);
+
+    for (let deltaChange of deltaChanges) {
+        delta = delta.compose(deltaChange)
+    }
+
+    res.json({'delta': delta, 'text': convertDeltaToHtml(delta)})
 });
