@@ -34,7 +34,7 @@ app.post('/delta', function (req, res) {
     res.json(convertHtmlToDelta(caseHtmlString))
 });
 app.post('/html', function (req, res) {
-    req.setTimeout(300000);
+    req.setTimeout(500000);
     var delta = req.body.delta;
     res.json(convertDeltaToHtml(delta))
 });
