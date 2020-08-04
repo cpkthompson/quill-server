@@ -11,8 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "@sentry/node": "^4.6.1",
+    "acorn": "^5.7.4",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "https-proxy-agent": "^2.2.3",
+    "lodash": "^4.17.19",
     "node-quill-converter": "^0.3.2",
     "quill-delta": "^4.2.0",
     "quill-delta-to-html": "^0.10.7"
